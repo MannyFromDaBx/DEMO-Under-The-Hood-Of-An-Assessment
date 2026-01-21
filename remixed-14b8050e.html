@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELEMENT: The Future of Understanding Assessment</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #667eea;
+            --secondary: #764ba2;
+            --accent: #48bb78;
+            --dark: #1a202c;
+            --light: #f7fafc;
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(ellipse at center, #2d3748 0%, var(--dark) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(102, 126, 234, 0.03) 10px,
+                rgba(102, 126, 234, 0.03) 20px
+            );
+            animation: drift 20s linear infinite;
+        }
+
+        @keyframes drift {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .logo {
+            width: 120px;
+            height: 120px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+            animation: pulse 3s ease-in-out infinite;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .logo:hover::after {
+            content: 'Evaluating Learning through Engaging, Meaningful, and Natural Techniques';
+            position: absolute;
+            top: 130%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(26, 32, 44, 0.95);
+            color: #a0aec0;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            z-index: 10;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        h1 {
+            font-size: 4rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            text-align: center;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .tagline {
+            font-size: 1.5rem;
+            color: #a0aec0;
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 50px;
+            border: 2px solid var(--primary);
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            padding-top: 10px;
+            cursor: pointer;
+        }
+
+        .scroll-indicator::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: scroll 2s infinite;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(20px); opacity: 0; }
+        }
+
+        /* Section Styles */
+        .section {
+            min-height: 100vh;
+            padding: 80px 40px;
+            position: relative;
+            background: var(--dark);
+        }
+
+        .section:nth-child(even) {
+            background: #2d3748;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #a0aec0;
+            margin-bottom: 50px;
+        }
+
+        /* Interactive Elements */
+        .hoverable {
+            position: relative;
+            cursor: help;
+            border-bottom: 2px dotted var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .hoverable:hover {
+            color: var(--primary);
+        }
+
+        .hover-content {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%) scale(0);
+            background: rgba(26, 32, 44, 0.98);
+            border: 1px solid var(--primary);
+            border-radius: 15px;
+            padding: 20px;
+            width: 300px;
+            z-index: 100;
+            opacity: 0;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .hoverable:hover .hover-content {
+            transform: translateX(-50%) scale(1);
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Journey Section */
+        .journey-container {
+            position: relative;
+            margin-top: 50px;
+        }
+
+        .assessment-step {
+            margin-bottom: 80px;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .assessment-step:nth-child(1) { animation-delay: 0.2s; }
+        .assessment-step:nth-child(2) { animation-delay: 0.4s; }
+        .assessment-step:nth-child(3) { animation-delay: 0.6s; }
+        .assessment-step:nth-child(4) { animation-delay: 0.8s; }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .step-indicator {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-right: 20px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .step-title {
+            font-size: 1.8rem;
+            color: white;
+        }
+
+        /* Split View */
+        .split-view {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .view-panel {
+            background: rgba(45, 55, 72, 0.5);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .view-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+        }
+
+        .panel-title {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .icon {
+            width: 30px;
+            height: 30px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Chat Interface */
+        .chat-interface {
+            background: #1a202c;
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            min-height: 200px;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            animation: messageSlide 0.5s ease-out;
+        }
+
+        @keyframes messageSlide {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .message.user {
+            text-align: right;
+        }
+
+        .message-bubble {
+            display: inline-block;
+            padding: 12px 18px;
+            border-radius: 18px;
+            max-width: 85%;
+            position: relative;
+            line-height: 1.5;
+        }
+
+        .message.system .message-bubble {
+            background: var(--gradient);
+            color: white;
+        }
+
+        .message.user .message-bubble {
+            background: #4a5568;
+            color: white;
+            text-align: left;
+        }
+
+        /* MC Question */
+        .mc-popup {
+            background: rgba(26, 32, 44, 0.95);
+            border: 2px solid var(--primary);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .mc-question {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .mc-option {
+            background: rgba(45, 55, 72, 0.8);
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            border-radius: 10px;
+            padding: 12px;
+            margin: 10px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mc-option:hover {
+            background: rgba(102, 126, 234, 0.2);
+            border-color: var(--primary);
+        }
+
+        /* Agent Analysis View */
+        .agent-analysis-deep {
+            background: rgba(26, 32, 44, 0.9);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .agent-analysis-deep:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        }
+
+        .expand-indicator {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: var(--primary);
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .agent-analysis-deep.expanded .expand-indicator {
+            transform: rotate(180deg);
+        }
+
+        .agent-name {
+            font-size: 1rem;
+            color: var(--primary);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .agent-thoughts {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(102, 126, 234, 0.05);
+            border-radius: 10px;
+            border-left: 3px solid var(--primary);
+        }
+
+        .agent-analysis-deep.expanded .agent-thoughts {
+            display: block;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .thought-item {
+            margin-bottom: 10px;
+            color: #cbd5e0;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .evidence-tag {
+            display: inline-block;
+            background: rgba(72, 187, 120, 0.2);
+            color: var(--accent);
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            margin: 5px;
+            border: 1px solid rgba(72, 187, 120, 0.3);
+        }
+
+        .level-indicator {
+            display: inline-block;
+            background: var(--gradient);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+
+        /* Consensus Dialog */
+        .consensus-dialog {
+            background: rgba(26, 32, 44, 0.95);
+            border: 2px solid var(--primary);
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 30px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .consensus-dialog::before {
+            content: 'Click to see full consensus discussion';
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: var(--dark);
+            color: var(--primary);
+            padding: 5px 15px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+        }
+
+        .consensus-content {
+            display: none;
+        }
+
+        .consensus-dialog.expanded .consensus-content {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .consensus-dialog.expanded::before {
+            content: 'Consensus Protocol in Action';
+        }
+
+        .dialog-exchange {
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(102, 126, 234, 0.05);
+            border-radius: 10px;
+            border-left: 3px solid var(--primary);
+        }
+
+        .dialog-speaker {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .dialog-text {
+            color: #cbd5e0;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* Level Framework */
+        .level-framework {
+            background: rgba(45, 55, 72, 0.3);
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 50px;
+        }
+
+        .level-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .level-card {
+            background: rgba(26, 32, 44, 0.8);
+            border-radius: 12px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+            position: relative;
+        }
+
+        .level-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        }
+
+        .level-card:hover::after {
+            content: attr(data-description);
+            position: absolute;
+            bottom: 110%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(26, 32, 44, 0.98);
+            color: #cbd5e0;
+            padding: 15px;
+            border-radius: 10px;
+            width: 250px;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            z-index: 100;
+            border: 1px solid var(--primary);
+            pointer-events: none;
+        }
+
+        .level-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
+        }
+
+        .level-name {
+            font-size: 0.9rem;
+            color: #cbd5e0;
+        }
+
+        .level-category {
+            font-size: 0.75rem;
+            color: #718096;
+            margin-top: 5px;
+        }
+
+        /* Interactive Parallel Processing */
+        .parallel-visual {
+            position: relative;
+            padding: 40px 0;
+            margin: 40px 0;
+        }
+
+        .process-track {
+            position: relative;
+            height: 80px;
+            margin: 20px 0;
+            background: rgba(26, 32, 44, 0.5);
+            border-radius: 40px;
+            overflow: hidden;
+        }
+
+        .track-label {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-weight: 600;
+            z-index: 10;
+        }
+
+        .track-progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: var(--gradient);
+            border-radius: 40px;
+            animation: progress 3s ease-in-out infinite;
+        }
+
+        @keyframes progress {
+            0% { width: 0%; opacity: 0.3; }
+            50% { width: 100%; opacity: 1; }
+            100% { width: 100%; opacity: 0.3; }
+        }
+
+        .track-details {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #a0aec0;
+            font-size: 0.9rem;
+        }
+
+        /* Innovation Cards */
+        .innovation-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .innovation-card {
+            background: rgba(45, 55, 72, 0.6);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .innovation-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .innovation-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .innovation-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .innovation-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .innovation-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .innovation-description {
+            color: #a0aec0;
+            line-height: 1.6;
+        }
+
+        /* Theory Badge */
+        .theory-badge {
+            display: inline-block;
+            background: rgba(118, 75, 162, 0.2);
+            color: #d6bcfa;
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            margin-left: 10px;
+            border: 1px solid rgba(118, 75, 162, 0.3);
+        }
+
+        /* Final CTA */
+        .cta-section {
+            text-align: center;
+            padding: 100px 40px;
+            background: radial-gradient(ellipse at center, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+        }
+
+        .cta-title {
+            font-size: 3rem;
+            margin-bottom: 30px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            .split-view { grid-template-columns: 1fr; }
+            .level-grid { grid-template-columns: repeat(2, 1fr); }
+            .innovation-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="logo">E</div>
+        <h1>ELEMENT</h1>
+        <p class="tagline">Understanding Assessment Through Natural Conversation</p>
+        <p class="tagline" style="font-size: 1rem; margin-top: -20px;">Expertise Verification • Professional Certification • Academic Assessment • Organizational Intelligence • AI-to-AI Evaluation</p>
+        <div class="scroll-indicator" onclick="document.getElementById('journey').scrollIntoView()"></div>
+    </section>
+
+    <!-- The Journey Begins -->
+    <section id="journey" class="section">
+        <div class="container">
+            <h2>The Assessment Journey</h2>
+            <p class="subtitle">Follow along as we reveal how ELEMENT transforms a simple conversation into sophisticated understanding measurement</p>
+            
+            <div class="journey-container">
+                <!-- Step 1: The Opening -->
+                <div class="assessment-step">
+                    <div class="step-header">
+                        <div class="step-indicator">1</div>
+                        <div class="step-title">The Conversation Begins</div>
+                    </div>
+                    
+                    <div class="split-view">
+                        <div class="view-panel">
+                            <div class="panel-title">
+                                <div class="icon">👤</div>
+                                What You Experience
+                            </div>
+                            <div class="chat-interface">
+                                <div class="message system">
+                                    <div class="message-bubble">
+                                        I'm really interested in exploring your understanding of physics. What aspects particularly capture your interest?
+                                    </div>
+                                </div>
+                                <div class="message user">
+                                    <div class="message-bubble">
+                                        I find quantum mechanics fascinating, especially how particles can exist in multiple states simultaneously until observed.
+                                    </div>
+                                </div>
+                                <div class="message system">
+                                    <div class="message-bubble">
+                                        That's a wonderful area to explore! How would you explain superposition to someone who's never heard of it before?
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="view-panel">
+                            <div class="panel-title">
+                                <div class="icon">🧠</div>
+                                The Hidden Orchestra
+                            </div>
+                            <div style="padding: 20px; background: rgba(26, 32, 44, 0.8); border-radius: 10px;">
+                                <p style="color: #a0aec0; line-height: 1.6;">
+                                    <strong style="color: var(--primary);">Conversation Management Agent</strong> crafts questions following the 
+                                    <span class="hoverable">Three-Phase Architecture
+                                        <span class="hover-content">
+                                            <strong>Phase 1: Calibration (Q1-2)</strong><br>
+                                            Establish baseline and engagement<br><br>
+                                            <strong>Phase 2: Exploration (Q3-6)</strong><br>
+                                            Systematically probe all four pillars<br><br>
+                                            <strong>Phase 3: Ceiling Confirmation (Q7-10)</strong><br>
+                                            Verify maximum understanding level
+                                        </span>
+                                    </span>
+                                    while exploring the 
+                                    <span class="hoverable">Four Pillars
+                                        <span class="hover-content">
+                                            <strong>Declarative:</strong> What they know (facts, concepts)<br>
+                                            <strong>Procedural:</strong> How they apply it (methods, processes)<br>
+                                            <strong>Conditional:</strong> When/why to use it (context, judgment)<br>
+                                            <strong>Generative:</strong> What they can create (novel applications)
+                                        </span>
+                                    </span>
+                                    of understanding.
+                                </p>
+                                <div style="margin-top: 15px;">
+                                    <span class="evidence-tag">📍 Domain: Physics</span>
+                                    <span class="evidence-tag">📍 Phase: Calibration</span>
+                                    <span class="evidence-tag">📍 Probing: Interest & Entry Level</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: User Responds with Deep Analysis -->
+                <div class="assessment-step">
+                    <div class="step-header">
+                        <div class="step-indicator">2</div>
+                        <div class="step-title">Deep Response & Instant Engagement</div>
+                    </div>
+                    
+                    <div class="split-view">
+                        <div class="view-panel">
+                            <div class="panel-title">
+                                <div class="icon">👤</div>
+                                The User's Response
+                            </div>
+                            <div class="chat-interface">
+                                <div class="message user">
+                                    <div class="message-bubble">
+                                        Well, superposition is like... imagine a coin that's spinning in the air. Before it lands, it's both heads and tails at the same time. That's basically what happens with quantum particles - they exist in all possible states until we measure them. It's why Schrödinger came up with his cat paradox, to show how weird this is. The cat is both alive and dead until you open the box. Though I think the wave function collapses because of consciousness observing it, which is why measurement changes everything.
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- MC Question appears while analysis happens -->
+                            <div class="mc-popup">
+                                <div class="mc-question">
+                                    While I consider your response, a quick question:<br>
+                                    Which of the following are fundamental assumptions of quantum field theory?
+                                </div>
+                                <div class="mc-option">A) Particles are excitations in underlying quantum fields</div>
+                                <div class="mc-option">B) The vacuum state contains zero energy</div>
+                                <div class="mc-option">C) Locality and causality must be preserved</div>
+                                <div class="mc-option">D) Wave functions represent physical entities in space</div>
+                            </div>
+                        </div>
+
+                        <div class="view-panel">
+                            <div class="panel-title">
+                                <div class="icon">⚡</div>
+                                Four Agents Activate in Parallel
+                            </div>
+                            
+                            <!-- Fact Checker -->
+                            <div class="agent-analysis-deep" onclick="this.classList.toggle('expanded')">
+                                <span class="expand-indicator">▼</span>
+                                <div class="agent-name">🔍 Declarative Fact Checker</div>
+                                <div style="color: #a0aec0; font-size: 0.9rem;">
+                                    ✓ "Superposition" - correct concept<br>
+                                    ✓ "Schrödinger's cat" - correct reference<br>
+                                    ⚠️ "Consciousness causes collapse" - contested<br>
+                                    Accuracy: 75%
+                                </div>
+                                <div class="agent-thoughts">
+                                    <div class="thought-item">• User demonstrates knowledge of key quantum concepts</div>
+                                    <div class="thought-item">• The consciousness interpretation suggests exposure to popular science rather than formal physics</div>
+                                    <div class="thought-item">• No mathematical formalism mentioned (no wave functions, operators, or equations)</div>
+                                </div>
+                            </div>
+
+                            <!-- Understanding Analysis -->
+                            <div class="agent-analysis-deep" onclick="this.classList.toggle('expanded')" style="margin-top: 15px;">
+                                <span class="expand-indicator">▼</span>
+                                <div class="agent-name">📊 Understanding Analysis Agent</div>
+                                <div style="color: #a0aec0; font-size: 0.9rem;">
+                                    Conceptual grasp present, lacks technical depth<br>
+                                    <span class="level-indicator">Est. Level 7-8</span>
+                                </div>
+                                <div class="agent-thoughts">
+                                    <div class="thought-item">
+                                        <strong>Applying Bloom's Taxonomy:</strong><br>
+                                        • Comprehension: Can explain concept with analogy ✓<br>
+                                        • Application: Not yet demonstrated<br>
+                                        • Analysis: Shows basic analytical thinking<br>
+                                        • Synthesis: Limited creative extension
+                                    </div>
+                                    <div class="thought-item">
+                                        <strong>Pattern Recognition (per Dreyfus Model):</strong><br>
+                                        • Advanced Beginner to Competent transition<br>
+                                        • Relies on analogies rather than formal understanding<br>
+                                        • No demonstration of mathematical/technical framework
+                                    </div>
+                                    <div class="thought-item">
+                                        <strong>Critical Gap:</strong> Absence of mathematical perspective limits ceiling to Level 8 without further evidence
+                                    </div>
+                                    <span class="theory-badge">Bloom's Taxonomy</span>
+                                    <span class="theory-badge">Dreyfus Model</span>
+                                </div>
+                            </div>
+
+                            <!-- Validation Agent -->
+                            <div class="agent-analysis-deep" onclick="this.classList.toggle('expanded')" style="margin-top: 15px;">
+                                <span class="expand-indicator">▼</span>
+                                <div class="agent-name">✅ Validation & Consistency Agent</div>
+                                <div style="color: #a0aec0; font-size: 0.9rem;">
+                                    Explanation quality good, technical precision lacking<br>
+                                    <span class="level-indicator">Est. Level 7</span>
+                                </div>
+                                <div class="agent-thoughts">
+                                    <div class="thought-item">
+                                        <strong>Performance Quality Assessment:</strong><br>
+                                        • Can teach concept to novices effectively<br>
+                                        • Consistent narrative throughout response<br>
+                                        • BUT: Pop-science interpretation reveals limitation
+                                    </div>
+                                    <div class="thought-item">
+                                        <strong>Four Pillars Analysis:</strong><br>
+                                        • Declarative: Present but non-technical<br>
+                                        • Procedural: Not demonstrated<br>
+                                        • Conditional: Shows some judgment<br>
+                                        • Generative: Limited to known examples
+                                    </div>
+                                    <div class="thought-item">
+                                        <strong>Metacognitive Indicators:</strong><br>
+                                        • Aware of paradox/weirdness (good)<br>
+                                        • But doesn't recognize own knowledge gaps
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Interactive Parallel Processing Visual -->
+                    <div class="parallel-visual">
+                        <div class="process-track">
+                            <div class="track-label">🔍 Fact Verification</div>
+                            <div class="track-progress" style="animation-delay: 0s;"></div>
+                            <div class="track-details">Complete in milliseconds</div>
+                        </div>
+                        <div class="process-track">
+                            <div class="track-label">🧠 Deep Analysis</div>
+                            <div class="track-progress" style="animation-delay: 0.5s;"></div>
+                            <div class="track-details">2-3 seconds</div>
+                        </div>
+                        <div class="process-track">
+                            <div class="track-label">💡 MC Engagement</div>
+                            <div class="track-progress" style="animation-delay: 0.2s;"></div>
+                            <div class="track-details">Instant presentation</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Consensus Building -->
+                <div class="assessment-step">
+                    <div class="step-header">
+                        <div class="step-indicator">3</div>
+                        <div class="step-title">The Consensus Protocol</div>
+                    </div>
+                    
+                    <div class="consensus-dialog" onclick="this.classList.toggle('expanded')">
+                        <h3 style="color: var(--primary); margin-bottom: 20px;">Agent Consensus Building</h3>
+                        
+                        <div style="text-align: center; padding: 20px; background: rgba(102, 126, 234, 0.05); border-radius: 10px;">
+                            <strong style="font-size: 1.2rem;">Initial Positions:</strong><br>
+                            Understanding Analysis: Level 7-8 | Validation: Level 7
+                        </div>
+                        
+                        <div class="consensus-content">
+                            <div class="dialog-exchange">
+                                <div class="dialog-speaker">Understanding Analysis:</div>
+                                <div class="dialog-text">
+                                    "I see conceptual understanding with effective analogy use. The coin metaphor shows genuine comprehension. However, the consciousness interpretation and complete absence of mathematical formalism caps us at Level 8 maximum. Following the Dreyfus model, this is Advanced Beginner transitioning to Competent."
+                                </div>
+                            </div>
+                            
+                            <div class="dialog-exchange">
+                                <div class="dialog-speaker">Validation & Consistency:</div>
+                                <div class="dialog-text">
+                                    "Agreed on the consciousness red flag. Performance quality is consistent—they can explain to others effectively. But without any technical demonstration, I can't validate beyond Level 7. The Four Pillars assessment shows strong Declarative but missing Procedural entirely."
+                                </div>
+                            </div>
+                            
+                            <div class="dialog-exchange">
+                                <div class="dialog-speaker">Understanding Analysis:</div>
+                                <div class="dialog-text">
+                                    "Fair point. The lack of any mathematical notation, wave function representation, or technical vocabulary suggests pop-science exposure rather than formal study. Adjusting to Level 7 with potential for higher if technical knowledge emerges."
+                                </div>
+                            </div>
+                            
+                            <div class="dialog-exchange">
+                                <div class="dialog-speaker">Validation & Consistency:</div>
+                                <div class="dialog-text">
+                                    "Consensus at Level 7. Key evidence: effective teaching ability, conceptual grasp, but missing technical foundation. Recommendation: probe the consciousness claim and require mathematical engagement."
+                                </div>
+                            </div>
+                            
+                            <div class="dialog-exchange" style="background: rgba(72, 187, 120, 0.1); border-left-color: var(--accent);">
+                                <div class="dialog-speaker">Joint Recommendation to Conversation Management:</div>
+                                <div class="dialog-text">
+                                    <strong>Consensus Level:</strong> 7 (Functional Knowledge)<br>
+                                    <strong>Confidence:</strong> 0.85<br>
+                                    <strong>Next Question Focus:</strong><br>
+                                    1. Challenge the consciousness interpretation gently<br>
+                                    2. Require engagement with mathematical formalism<br>
+                                    3. Test if they can work with actual wave functions<br>
+                                    4. Probe deeper into measurement problem understanding<br>
+                                    <strong>Evidence Tagged:</strong> Coin analogy (strength), consciousness claim (weakness), absence of math (limiting factor)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4: The Flow Continues -->
+                <div class="assessment-step">
+                    <div class="step-header">
+                        <div class="step-indicator">4</div>
+                        <div class="step-title">Seamless Continuation</div>
+                    </div>
+                    
+                    <div class="split-view">
+                        <div class="view-panel">
+                            <div class="panel-title">
+                                <div class="icon">👤</div>
+                                The Conversation Flows
+                            </div>
+                            <div class="chat-interface">
+                                <div class="message system">
+                                    <div class="message-bubble">
+                                        I love your coin analogy! It really captures the essence of superposition. You mentioned consciousness causing wave function collapse - that's a fascinating interpretation. How would you describe what's happening mathematically when we write the state as |ψ⟩ = α|0⟩ + β|1⟩? And what do you think those probability amplitudes α and β actually represent?
+                                    </div>
+                                </div>
+                            </div>
+                            <p style="margin-top: 20px; color: #a0aec0; text-align: center;">
+                                Notice how the question naturally incorporates the agents' recommendation:<br>
+                                ✓ Gently challenges consciousness claim<br>
+                                ✓ Introduces mathematical notation<br>
+                                ✓ Tests technical understanding
+                            </p>
+                        </div>
+
+                        <div class="view-panel">
+                            <div class="panel-title">
+                                <div class="icon">🎯</div>
+                                Systematic Coverage Design
+                            </div>
+                            <div style="padding: 20px;">
+                                <div style="margin-bottom: 20px;">
+                                    <strong style="color: var(--primary);">Questions 1-2:</strong> Calibration Phase<br>
+                                    <span style="color: #a0aec0; font-size: 0.9rem;">Establish baseline and engagement</span>
+                                </div>
+                                <div style="margin-bottom: 20px;">
+                                    <strong style="color: var(--primary);">Questions 3-6:</strong> Exploration Phase<br>
+                                    <span style="color: #a0aec0; font-size: 0.9rem;">Systematically probe all four cognitive pillars</span>
+                                </div>
+                                <div style="margin-bottom: 20px;">
+                                    <strong style="color: var(--primary);">Questions 7-10:</strong> Ceiling Confirmation<br>
+                                    <span style="color: #a0aec0; font-size: 0.9rem;">Verify maximum understanding level</span>
+                                </div>
+                                <div style="margin-top: 30px; padding: 15px; background: rgba(72, 187, 120, 0.1); border-radius: 10px;">
+                                    <strong style="color: var(--accent);">Throughout the Assessment:</strong><br>
+                                    <span style="color: #a0aec0;">
+                                        • Evidence tagged and preserved for final report<br>
+                                        • Patterns tracked across responses<br>
+                                        • Consistency validated continuously<br>
+                                        • Natural conversation flow maintained
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The 21 Levels Framework -->
+    <section class="section">
+        <div class="container">
+            <h2>The 21-Level Framework</h2>
+            <p class="subtitle">From surface recognition to transcendent mastery - grounded in cognitive science</p>
+            
+            <div class="level-framework">
+                <div class="level-grid">
+                    <!-- Novice Levels -->
+                    <div class="level-card" data-description="No recognition of domain concepts. Cannot identify basic elements or terminology. Starting from zero.">
+                        <div class="level-number">1</div>
+                        <div class="level-name">Pre-Recognition</div>
+                        <div class="level-category">Novice</div>
+                    </div>
+                    <div class="level-card" data-description="Can identify familiar terms. Recognizes concepts when presented but cannot explain. Surface exposure only.">
+                        <div class="level-number">2</div>
+                        <div class="level-name">Recognition</div>
+                        <div class="level-category">Novice</div>
+                    </div>
+                    <div class="level-card" data-description="Knows that concepts exist. Can name elements but understanding is fragmented. Beginning to form mental models.">
+                        <div class="level-number">3</div>
+                        <div class="level-name">Awareness</div>
+                        <div class="level-category">Novice</div>
+                    </div>
+                    
+                    <!-- Advanced Beginner -->
+                    <div class="level-card" data-description="Can describe basic concepts. Has exposure to fundamental ideas. Starting to see connections.">
+                        <div class="level-number">4</div>
+                        <div class="level-name">Basic Familiarity</div>
+                        <div class="level-category">Advanced Beginner</div>
+                    </div>
+                    <div class="level-card" data-description="Understands main ideas. Can explain simply to others. Knowledge lacks depth but covers basics.">
+                        <div class="level-number">5</div>
+                        <div class="level-name">Surface Understanding</div>
+                        <div class="level-category">Advanced Beginner</div>
+                    </div>
+                    <div class="level-card" data-description="Beginning to grasp relationships. Can apply knowledge in familiar contexts. Understanding deepening.">
+                        <div class="level-number">6</div>
+                        <div class="level-name">Developing Grasp</div>
+                        <div class="level-category">Advanced Beginner</div>
+                    </div>
+                    
+                    <!-- Competent -->
+                    <div class="level-card" data-description="Can use knowledge practically. Solves standard problems. Reliable in familiar situations.">
+                        <div class="level-number">7</div>
+                        <div class="level-name">Functional Knowledge</div>
+                        <div class="level-category">Competent</div>
+                    </div>
+                    <div class="level-card" data-description="Comfortable with regular application. Can troubleshoot common issues. Building expertise.">
+                        <div class="level-number">8</div>
+                        <div class="level-name">Working Proficiency</div>
+                        <div class="level-category">Competent</div>
+                    </div>
+                    <div class="level-card" data-description="Handles complex situations. Can adapt knowledge to new contexts. Shows good judgment.">
+                        <div class="level-number">9</div>
+                        <div class="level-name">Competent Application</div>
+                        <div class="level-category">Competent</div>
+                    </div>
+                    
+                    <!-- Proficient -->
+                    <div class="level-card" data-description="Smooth, efficient practice. Sees patterns quickly. Can mentor others effectively.">
+                        <div class="level-number">10</div>
+                        <div class="level-name">Skilled Practice</div>
+                        <div class="level-category">Proficient</div>
+                    </div>
+                    <div class="level-card" data-description="Integrates knowledge fluidly. Makes connections across concepts. Developing personal style.">
+                        <div class="level-number">11</div>
+                        <div class="level-name">Confident Integration</div>
+                        <div class="level-category">Proficient</div>
+                    </div>
+                    <div class="level-card" data-description="Handles edge cases well. Can work with incomplete information. Shows strategic thinking.">
+                        <div class="level-number">12</div>
+                        <div class="level-name">Advanced Application</div>
+                        <div class="level-category">Proficient</div>
+                    </div>
+                    
+                    <!-- Expert -->
+                    <div class="level-card" data-description="Profound understanding of principles. Sees deep structures. Can explain complexity simply.">
+                        <div class="level-number">13</div>
+                        <div class="level-name">Deep Comprehension</div>
+                        <div class="level-category">Expert</div>
+                    </div>
+                    <div class="level-card" data-description="Understands interconnections. Sees how parts create wholes. Thinks in systems.">
+                        <div class="level-number">14</div>
+                        <div class="level-name">Systems Thinking</div>
+                        <div class="level-category">Expert</div>
+                    </div>
+                    <div class="level-card" data-description="Effortless expertise. Intuitive grasp. Can innovate within established frameworks.">
+                        <div class="level-number">15</div>
+                        <div class="level-name">Expert Fluency</div>
+                        <div class="level-category">Expert</div>
+                    </div>
+                    
+                    <!-- Master -->
+                    <div class="level-card" data-description="Shapes how others think about domain. Strategic vision. Influences field direction.">
+                        <div class="level-number">16</div>
+                        <div class="level-name">Strategic Mastery</div>
+                        <div class="level-category">Master</div>
+                    </div>
+                    <div class="level-card" data-description="Creates new applications. Pushes boundaries. Recognized innovator in field.">
+                        <div class="level-number">17</div>
+                        <div class="level-name">Innovative Application</div>
+                        <div class="level-category">Master</div>
+                    </div>
+                    <div class="level-card" data-description="Recognized thought leader. Defines best practices. Others seek their expertise.">
+                        <div class="level-number">18</div>
+                        <div class="level-name">Domain Authority</div>
+                        <div class="level-category">Master</div>
+                    </div>
+                    
+                    <!-- Visionary -->
+                    <div class="level-card" data-description="Transforms understanding itself. Creates new paradigms. Revolutionary insights.">
+                        <div class="level-number">19</div>
+                        <div class="level-name">Transformative Insight</div>
+                        <div class="level-category">Visionary</div>
+                    </div>
+                    <div class="level-card" data-description="Synthesizes across domains. Creates new fields. Visionary perspective.">
+                        <div class="level-number">20</div>
+                        <div class="level-name">Visionary Synthesis</div>
+                        <div class="level-category">Visionary</div>
+                    </div>
+                    <div class="level-card" data-description="Transcends the domain itself. Historical impact. Once-in-a-generation mastery.">
+                        <div class="level-number">21</div>
+                        <div class="level-name">Transcendent Mastery</div>
+                        <div class="level-category">Visionary</div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 40px; padding: 25px; background: rgba(102, 126, 234, 0.05); border-radius: 15px; text-align: center;">
+                    <p style="color: #cbd5e0; font-size: 1.1rem; line-height: 1.6;">
+                        This framework incorporates concepts and markers from the <span class="theory-badge">Dreyfus Model</span> of skill acquisition,
+                        <span class="theory-badge">Bloom's Taxonomy</span> of educational objectives,<br>
+                        <span class="theory-badge">Cognitive Load Theory</span>, <span class="theory-badge">Zone of Proximal Development</span>,<br>
+                        <span class="theory-badge">Constructivist Learning Theory</span>, <span class="theory-badge">Piaget's Stages</span>,<br>
+                        <span class="theory-badge">Gardner's Multiple Intelligences</span>, and <span class="theory-badge">Metacognitive Theory</span>, among others,<br>
+                        to create a comprehensive understanding spectrum.<br><br>
+                        <span style="color: var(--accent);">Every level represents genuine achievement. Natural domain ceilings are respected.</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Underlying Theory & Architecture -->
+    <section class="section">
+        <div class="container">
+            <h2>The Underlying Theory & Architecture</h2>
+            <p class="subtitle">Why ELEMENT represents a fundamental breakthrough in assessment technology</p>
+            
+            <div class="innovation-grid">
+                <div class="innovation-card">
+                    <div class="innovation-icon">🏗️</div>
+                    <div class="innovation-title">Multi-Agent Cognitive Architecture</div>
+                    <div class="innovation-description">
+                        Four specialized agents with distinct expertise, consensus protocols, and evidence preservation. Each agent applies different theoretical lenses—from Bloom's Taxonomy to the Dreyfus Model—creating assessment depth impossible with single-model approaches.
+                    </div>
+                </div>
+                
+                <div class="innovation-card">
+                    <div class="innovation-icon">🔬</div>
+                    <div class="innovation-title">Evidence-Based Consensus Protocol</div>
+                    <div class="innovation-description">
+                        Agents engage in structured debate using JSON-formatted evidence exchanges. Understanding Analysis advocates for conceptual promise while Validation insists on demonstrated performance. Their discussion ensures balanced, accurate assessment.
+                    </div>
+                </div>
+                
+                <div class="innovation-card">
+                    <div class="innovation-icon">🎯</div>
+                    <div class="innovation-title">The Four Pillars Framework</div>
+                    <div class="innovation-description">
+                        Systematic assessment across Declarative (facts), Procedural (methods), Conditional (context), and Generative (creativity) dimensions. Each question strategically probes multiple pillars while maintaining natural conversation flow.
+                    </div>
+                </div>
+                
+                <div class="innovation-card">
+                    <div class="innovation-icon">⚡</div>
+                    <div class="innovation-title">Zero-Wait Parallel Architecture</div>
+                    <div class="innovation-description">
+                        Three simultaneous processing tracks: instant fact verification, deep multi-agent analysis, and immediate MC engagement. Users never experience delays while sophisticated evaluation happens invisibly in the background.
+                    </div>
+                </div>
+                
+                <div class="innovation-card">
+                    <div class="innovation-icon">🌍</div>
+                    <div class="innovation-title">Domain-Aware Intelligence</div>
+                    <div class="innovation-description">
+                        From quantum physics to bread baking, ELEMENT adapts expectations and respects natural ceilings. Level 12 mastery in first aid is complete achievement—we don't force artificial complexity where it doesn't belong.
+                    </div>
+                </div>
+                
+                <div class="innovation-card">
+                    <div class="innovation-icon">📚</div>
+                    <div class="innovation-title">250+ Page Protocol Foundation</div>
+                    <div class="innovation-description">
+                        Not just prompts but a complete assessment methodology. Detailed specifications, theoretical grounding, domain adaptations, and sophisticated consensus mechanisms create a deep, defensible system that took years to develop and refine.
+                    </div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 50px; padding: 30px; background: rgba(102, 126, 234, 0.05); border-radius: 20px; border: 2px solid rgba(102, 126, 234, 0.2);">
+                <h3 style="color: var(--primary); margin-bottom: 20px;">🚀 The Competitive Moat</h3>
+                <p style="color: #cbd5e0; line-height: 1.8; font-size: 1.05rem;">
+                    This isn't a chatbot asking questions. It's a sophisticated cognitive assessment system with multi-agent consensus protocols, 
+                    parallel processing architecture, and deep theoretical grounding from cognitive science, learning theories (Constructivism, Cognitivism, Connectivism), 
+                    mastery research (Ericsson's expertise studies, Flow Theory), human creativity models (Divergent Thinking, Wallas's Creative Process), 
+                    and philosophical epistemology (theories of knowledge, understanding, and belief). 
+                    The complexity is invisible to users but creates true defensibility. Each component is necessary; the magic emerges from their orchestration.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final Impact -->
+    <section class="cta-section">
+        <h2 class="cta-title">ELEMENT</h2>
+        <p style="font-size: 1.5rem; color: #a0aec0; margin-bottom: 30px;">
+            Where natural conversation meets sophisticated assessment
+        </p>
+        <p style="font-size: 1.2rem; color: #cbd5e0; max-width: 800px; margin: 0 auto;">
+            A complete reimagining of how we measure human understanding.<br>
+            Not an AI wrapper. Not a chatbot with prompts.<br>
+            <span style="color: white;">A breakthrough in assessment science.</span>
+        </p>
+    </section>
+
+    <script>
+        // Smooth scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add ripple effect to interactive elements
+        document.querySelectorAll('.agent-analysis-deep, .consensus-dialog, .level-card').forEach(element => {
+            element.addEventListener('click', function(e) {
+                const ripple = document.createElement('div');
+                ripple.className = 'ripple';
+                this.appendChild(ripple);
+                
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all assessment steps
+        document.querySelectorAll('.assessment-step').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+
+    <style>
+        /* Ripple effect */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(102, 126, 234, 0.3);
+            transform: scale(0);
+            animation: ripple-animation 0.6s ease-out;
+            pointer-events: none;
+        }
+
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+    </style>
+</body>
+</html>
